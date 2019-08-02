@@ -1,0 +1,21 @@
+
+<div class="jumbotron">
+    <h1 class="text-center">Alurapic</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">
+    {{mensagem}}
+</p>
+
+<div class="row">
+        <search> </search>
+</div> 
+
+<div class="row">
+    <my-panel class="col-md-2 panel-animate" ng-repeat="photo in photos | filter: filtro" titulo="{{photo.titulo}}">
+        <img class="img-responsive center-block img" src="{{photo.url}}" alt="{{photo.titulo}}">
+        <a class="btn btn-primary btn-block edit" href="/fotos/edit/{{photo._id}}">Editar</a>
+        <btn-danger name="Remover" action="remove(photo)"></btn-danger>
+        <!-- <button class="btn btn-danger btn-block" ng-click="remove(photo)">Remover</button> -->
+    </my-panel>
+</div>

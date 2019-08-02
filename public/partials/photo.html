@@ -1,0 +1,55 @@
+<div class="page-header text-center">
+    <h1>{{photo.titulo}}</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">{{mensagem}}</p>
+
+<form novalidate name="formulario" class="row" ng-submit="register()">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Título</label>
+            <input name="titulo" class="form-control" ng-model="photo.titulo" required ng-maxlength="20"> 
+        </div>
+        <div class="form-group">
+            <label>URL</label>
+            <input name="url" class="form-control" ng-model="photo.url" required>
+
+            <span ng-show = "formulario.$submitted && formulario.url.$error.required" 
+                class="form-control alert-danger">
+                URL obrigatória
+            </span>
+        </div>
+        <div class="form-group">
+            <label>Descrição</label>
+            <textarea name="descricao" class="form-control text-new" ng-model="photo.description">
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Grupo</label>
+            <select name="grupo" 
+                ng-model="photo.group" 
+                class="form-control" 
+                required 
+                ng-controller="groupController"
+                ng-options = "group._id as (group.nome | uppercase ) for group in groups"
+                >
+                <option value="">Escolha um grupo</option>
+            </select>
+            <span ng-show="formulario.$submitted && formulario.groupo.$error.required" class="form-control alert-danger">
+                Grupo obrigatório
+            </span>
+        </div>
+
+        <div class="row text-center">
+            <button type="submit" class="btn btn-primary" ng-disabled="formulario.$invalid">
+                Salvar
+            </button>
+            <a href="/" class="btn btn-primary">Voltar</a>
+        </div>
+        <hr>
+    </div>
+    <div class="col-md-6">
+        <my-image image="{{photo.url}}" title="{{photo.titulo}}"></my-image>
+    </div>
+</form>

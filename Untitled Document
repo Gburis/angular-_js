@@ -1,0 +1,116 @@
+Anotações
+
+COMANDOS NODE
+
+npm install - instalar modulos que estaja no package.json
+
+==========================================================
+
+ANGULAR
+
+Escopo global
+angular.module('exemplo', []);
+
+
+gerenciar pagina inteira com modulo
+aidicionar atrr ng-app="exemplo" na tag HTML
+
+indicar qual fragmento será gerenciado pelo nosso controller
+aidicionar atrr ng-controller="exemplo" na tag desejada 
+
+
+
+Interpolação
+{{}} lacunas no HTML para trazer dados dinamicamente
+
+
+laço de repetição
+ng-repeat="exemplo in exemplos"
+
+==========================================================
+
+Ajax
+
+GET
+
+$http.get('exemplo');
+
+associando ao array exemplo
+$scope.exemplo = [];
+let promice = $http.get('https://exemplo.com');
+
+promice.then(function(resp){
+	$scope.exemplo = resp.data;
+}).catch(function(erro) {
+        console.log(erro)
+});
+
+POST
+
+angular.module('alurapic')
+.controller('FotoController', function($scope, $http) {
+
+$scope.foto = {};
+
+$scope.submeter = function() {
+
+    $http.post('/v1/fotos', $scope.foto)
+    .success(function() {
+        console.log('Foto adicionada com sucesso');
+    })
+    .error(function(erro) {
+        console.log('Não foi possível cadastrar a foto');
+    })
+};
+
+});
+
+não deixar enviar dados invalidos
+if ($scope.formulario.$valid) {}
+==============================================
+
+chamar outro scope
+
+ng-moldel="exemple",
+
+
+Aplicar filtro no ng-repeat 
+
+| filter:exemplo 
+
+
+Modigicar comportamento do ng_model
+
+ng-model-options
+
+Quando usuario acessar nova rota
+
+when  
+exemplo
+$routeProvider.when('/fotos', {
+    templateUrl: 'partials/principal.html',
+    controller: 'FotosController'
+});
+
+============================================
+SPA
+
+ocultar # na URL
+
+$locationProvider
+
+$locationProvider.html5Mode(true);
+
+Rotas Angular
+
+redireiconar para outra pagina caso não exista
+$routeProvider.otherwise({redirectTo: '/exemplo'});
+
+
+============================================
+Lista de eventos por diretivas 
+
+ng-submit="exemple()"
+ng-disabled="exemple.$invalid"
+novalidate
+
