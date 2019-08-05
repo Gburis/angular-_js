@@ -1,4 +1,4 @@
-angular.module('myDirectives',[])
+angular.module('myDirectives',['myService'])
 	.directive('myPanel', function(){
 
 		return {
@@ -37,5 +37,33 @@ angular.module('myDirectives',[])
 				action : '&'
 			},
 			template: '<button class="btn btn-danger btn-block" ng-click="action()">{{name}}</button>'
+		}
+	}).directive('myFocus', function(){
+		return{
+			restrict: 'A',
+			// scope:{
+			// 	focado: '='
+			// },
+			link: function(scope, element){
+				scope.$on('registerImage', function(){
+					element[0].focus();
+					// if(scope.focado){
+					// 	element[0].focus();
+					// 	scope.focado = false;
+					// }
+				});
+			}
+		}
+	}).directive('myTitle', function(){
+		return {
+			restrict: 'E',
+			template: '<ul><li ng-repeat="titulo in titulos">{{titulo}}</li></ul>',
+			controller: function($scope, Ajax){
+				Ajax.query(function(photos){
+					$scope.titulos = photos.map(function(photo){
+						return photo.titulo;
+					});
+				})
+			}
 		}
 	});
